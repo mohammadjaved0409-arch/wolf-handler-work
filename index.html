@@ -1,54 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Wolf Handler — Built to Dominate Feeds</title>
-  <meta name="theme-color" content="#050508" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Wolf Handler — Built to Dominate Feeds</title>
+<meta name="theme-color" content="#050508" />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
 
-  <style>
-    :root{
-      --bg:#050508;
-      --panel:#0b0b12;
-      --text:#f2f4ff;
-      --muted:#8b90b2;
-      --cyan:#22d3ee;
-    }
+<style>
+:root{
+  --bg:#050508;
+  --panel:#0b0b12;
+  --text:#f2f4ff;
+  --muted:#8b90b2;
+  --cyan:#22d3ee;
+}
 
-    body{
-      margin:0;
-      font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
-      color:var(--text);
-      background:var(--bg);
-      overflow-x:hidden;
-    }
+/* ===== BASE ===== */
+body{
+  margin:0;
+  font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+  color:var(--text);
+  background:black;
+  overflow-x:hidden;
+}
 
-    /* Horizontal rail */
-    .h-section{height:220vh}
-    .h-sticky{position:sticky; top:0; height:100vh; display:flex; align-items:center; overflow:hidden}
-    .h-track{display:flex; gap:6rem; padding:0 10vw; will-change:transform}
+/* ===== GALAXY BACKGROUND ===== */
+.galaxy{
+  position:fixed;
+  inset:0;
+  z-index:-3;
+  background:black;
+  overflow:hidden;
+}
 
-    .card{
-      min-width:70vw;
-      max-width:70vw;
-      transition:transform .6s ease, opacity .6s ease;
-    }
-    .card.dim{opacity:.35; transform:scale(.92)}
-    .card.active{opacity:1; transform:scale(1.05)}
-  </style>
+/* stars */
+.galaxy::before{
+  content:"";
+  position:absolute;
+  inset:-100%;
+  background-image:
+    radial-gradient(1px 1px at 10% 20%, white, transparent),
+    radial-gradient(1px 1px at 30% 80%, white, transparent),
+    radial-gradient(1px 1px at 50% 40%, white, transparent),
+    radial-gradient(1px 1px at 70% 60%, white, transparent),
+    radial-gradient(1px 1px at 90% 10%, white, transparent);
+  background-size:300px 300px;
+  animation:starsMove 120s linear infinite;
+  opacity:.7;
+}
+
+/* nebula */
+.galaxy::after{
+  content:"";
+  position:absolute;
+  inset:-50%;
+  background:
+    radial-gradient(circle at 30% 30%, rgba(34,211,238,.18), transparent 40%),
+    radial-gradient(circle at 70% 60%, rgba(139,92,246,.18), transparent 45%);
+  animation:nebulaMove 40s ease-in-out infinite alternate;
+}
+
+@keyframes starsMove{
+  from{transform:translate(0,0);}
+  to{transform:translate(20%,20%);}
+}
+
+@keyframes nebulaMove{
+  from{transform:translate(-6%,-6%) scale(1);}
+  to{transform:translate(6%,6%) scale(1.15);}
+}
+
+/* ===== HORIZONTAL RAIL ===== */
+.h-section{height:220vh}
+.h-sticky{
+  position:sticky;
+  top:0;
+  height:100vh;
+  display:flex;
+  align-items:center;
+  overflow:hidden;
+}
+.h-track{
+  display:flex;
+  gap:6rem;
+  padding:0 10vw;
+}
+.card{
+  min-width:70vw;
+  max-width:70vw;
+  transition:transform .6s ease, opacity .6s ease;
+}
+.card.dim{opacity:.35; transform:scale(.92)}
+.card.active{opacity:1; transform:scale(1.05)}
+</style>
 </head>
 
 <body>
 
+<div class="galaxy"></div>
+
 <!-- HEADER -->
 <header class="fixed top-0 left-0 w-full z-50 bg-black/70 backdrop-blur">
   <div class="max-w-7xl mx-auto px-6 py-4 flex items-center gap-3">
-    <img src="logo.png" class="w-9 h-9" alt="Wolf Handler" />
+    <img src="logo.png" class="w-9 h-9" />
     <span class="font-black tracking-wide">WOLF HANDLER</span>
   </div>
 </header>
@@ -89,35 +148,32 @@
 </section>
 
 <footer class="py-10 text-center text-[var(--muted)] text-sm">
-  © 2025 Wolf Handler
+© 2025 Wolf Handler
 </footer>
 
 <script>
-  function horizontalScroll(section, track){
-    const cards = track.querySelectorAll('.card');
-    window.addEventListener('scroll', ()=>{
-      const r = section.getBoundingClientRect();
-      const p = Math.min(Math.max(-r.top / (r.height - innerHeight),0),1);
-      const max = track.scrollWidth - innerWidth;
-      track.style.transform = `translateX(${-p*max}px)`;
-
-      cards.forEach(c=>{
-        const center = c.offsetLeft + c.offsetWidth/2 - p*max;
-        Math.abs(innerWidth/2 - center) < innerWidth*0.25
-          ? c.classList.add('active')
-          : c.classList.add('dim');
-      });
+function horizontalScroll(section, track){
+  const cards = track.querySelectorAll('.card');
+  window.addEventListener('scroll', ()=>{
+    const r = section.getBoundingClientRect();
+    const p = Math.min(Math.max(-r.top/(r.height-innerHeight),0),1);
+    const max = track.scrollWidth - innerWidth;
+    track.style.transform = `translateX(${-p*max}px)`;
+    cards.forEach(c=>{
+      const center = c.offsetLeft + c.offsetWidth/2 - p*max;
+      Math.abs(innerWidth/2-center)<innerWidth*0.25
+        ? (c.classList.add('active'),c.classList.remove('dim'))
+        : (c.classList.add('dim'),c.classList.remove('active'));
     });
-  }
-
-  horizontalScroll(document.querySelectorAll('.h-section')[0], document.getElementById('videoTrack'));
-  horizontalScroll(document.querySelectorAll('.h-section')[1], document.getElementById('posterTrack'));
+  });
+}
+const s=document.querySelectorAll('.h-section');
+horizontalScroll(s[0],videoTrack);
+horizontalScroll(s[1],posterTrack);
 </script>
 
 <script async src="https://www.instagram.com/embed.js"></script>
-<script>
-  window.onload=()=>window.instgrm?.Embeds?.process();
-</script>
+<script>window.onload=()=>window.instgrm?.Embeds?.process();</script>
 
 </body>
 </html>
