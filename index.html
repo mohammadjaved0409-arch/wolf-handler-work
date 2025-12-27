@@ -3,69 +3,143 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Wolf Handler — Social Media Management</title>
-  <meta name="description" content="Wolf Handler — reels, posters, campaigns & social growth." />
-  <meta name="theme-color" content="#0b0b0f" />
+  <title>Wolf Handler — Space-Born Social Media</title>
+  <meta name="description" content="Wolf Handler — cinematic social media, reels, posters & campaigns with cosmic precision." />
+  <meta name="theme-color" content="#06070c" />
 
   <!-- Fonts & Tailwind -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
 
   <style>
     :root{
-      --bg:#0b0b0f;
-      --text:#f5f7fb;
-      --muted:#a8b0c6;
-      --accent:#AA38FF;
+      --bg:#06070c;
+      --panel:#0d0f1a;
+      --text:#eef1ff;
+      --muted:#9aa3c7;
+      --violet:#8b5cf6;
+      --cyan:#22d3ee;
     }
+
+    html,body{height:100%; scroll-behavior:smooth}
     body{
-      margin:0;
       font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
-      background:
-        radial-gradient(1200px 600px at 90% -10%, rgba(31,182,255,.12), transparent 60%),
-        radial-gradient(1000px 500px at -10% 10%, rgba(170,56,255,.12), transparent 60%),
-        var(--bg);
       color:var(--text);
+      background:
+        radial-gradient(1200px 600px at 80% -10%, rgba(34,211,238,.12), transparent 60%),
+        radial-gradient(900px 500px at -10% 10%, rgba(139,92,246,.14), transparent 60%),
+        linear-gradient(180deg, #06070c 0%, #080a14 60%, #05060b 100%);
+      overflow-x:hidden;
     }
-    section{scroll-margin-top:90px}
+
+    /* Starfield */
+    .stars:before, .stars:after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background-repeat:repeat;
+      background-image:
+        radial-gradient(1px 1px at 20% 30%, #fff, transparent 40%),
+        radial-gradient(1px 1px at 70% 80%, #fff, transparent 40%),
+        radial-gradient(1px 1px at 40% 60%, #fff, transparent 40%),
+        radial-gradient(1px 1px at 90% 10%, #fff, transparent 40%);
+      opacity:.25;
+      pointer-events:none;
+    }
+    .stars:after{opacity:.15; transform:scale(1.2)}
+
+    .glass{
+      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow:0 20px 60px rgba(0,0,0,.45);
+      backdrop-filter: blur(10px);
+    }
+
+    .glow{
+      box-shadow:
+        0 0 0 1px rgba(139,92,246,.25),
+        0 0 60px rgba(139,92,246,.25),
+        inset 0 0 40px rgba(34,211,238,.12);
+    }
+
+    .wolf{
+      filter: drop-shadow(0 0 40px rgba(139,92,246,.55));
+    }
+
+    section{scroll-margin-top:100px}
   </style>
 </head>
-
 <body>
 
+<div class="fixed inset-0 stars -z-10"></div>
+
 <!-- HEADER -->
-<header class="fixed top-0 left-0 w-full z-50 bg-black/80 backdrop-blur">
-  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-    <div class="font-extrabold text-lg">Wolf Handler</div>
+<header class="fixed top-0 left-0 w-full z-50 bg-black/40 backdrop-blur">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <div class="font-black tracking-wide text-lg">WOLF HANDLER</div>
+    <div class="hidden md:flex gap-8 text-sm">
+      <a href="#work" class="hover:text-[var(--cyan)]">Work</a>
+      <a href="#contact" class="hover:text-[var(--cyan)]">Contact</a>
+    </div>
   </div>
 </header>
 
 <!-- HERO -->
-<section class="pt-28 px-6">
-  <div class="max-w-5xl mx-auto text-center">
-    <h1 class="text-4xl md:text-6xl font-extrabold">
-      We build attention for brands
-    </h1>
-    <p class="mt-5 text-[var(--muted)] md:text-lg">
-      Reels • Posters • Campaigns • Growth
-    </p>
+<section class="relative pt-36 pb-28 px-6">
+  <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-14 items-center">
+
+    <!-- Left -->
+    <div>
+      <h1 class="text-4xl md:text-6xl font-black leading-tight">
+        Born in the dark.<br>
+        <span class="bg-clip-text text-transparent bg-gradient-to-r from-[var(--violet)] to-[var(--cyan)]">
+          Built to dominate feeds.
+        </span>
+      </h1>
+      <p class="mt-6 text-[var(--muted)] text-lg">
+        We craft cinematic reels, posters and campaigns — engineered for attention,
+        velocity and growth.
+      </p>
+      <div class="mt-8 flex gap-4">
+        <a href="#work" class="px-6 py-3 rounded-xl glass glow font-semibold">View Work</a>
+        <a href="#contact" class="px-6 py-3 rounded-xl border border-white/20 font-semibold">Contact</a>
+      </div>
+    </div>
+
+    <!-- Right : Wolf Graphic (SVG, no images needed) -->
+    <div class="relative">
+      <svg class="wolf w-full max-w-md mx-auto" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M200 30L260 120L350 150L280 210L300 310L200 260L100 310L120 210L50 150L140 120L200 30Z"
+              stroke="url(#g)" stroke-width="4" fill="none" />
+        <circle cx="200" cy="190" r="6" fill="#22d3ee" />
+        <circle cx="220" cy="190" r="6" fill="#22d3ee" />
+        <defs>
+          <linearGradient id="g" x1="0" y1="0" x2="400" y2="400">
+            <stop offset="0%" stop-color="#8b5cf6" />
+            <stop offset="100%" stop-color="#22d3ee" />
+          </linearGradient>
+        </defs>
+      </svg>
+      <p class="text-center text-xs text-[var(--muted)] mt-4">The Wolf — vigilance, speed, control</p>
+    </div>
+
   </div>
 </section>
 
 <!-- OUR WORK -->
-<section id="work" class="px-6 md:px-10 py-20">
+<section id="work" class="px-6 md:px-10 py-28">
   <div class="max-w-7xl mx-auto">
 
-    <div class="text-center mb-14">
-      <h2 class="text-4xl md:text-5xl font-extrabold">OUR WORK</h2>
-      <p class="mt-3 text-[var(--muted)]">Live Instagram reels & posters</p>
+    <div class="text-center mb-20">
+      <h2 class="text-4xl md:text-5xl font-black">OUR WORK</h2>
+      <p class="mt-4 text-[var(--muted)]">Signals sent into the void — and heard.</p>
     </div>
 
     <!-- VIDEOS -->
-    <h3 class="text-xl font-semibold mb-6">Videos</h3>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">
+    <h3 class="text-xl font-semibold mb-6">Reels</h3>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mb-24">
       <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DSxRpWsCag1/" data-instgrm-version="14"></blockquote>
       <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DSxRyBCjZT8/" data-instgrm-version="14"></blockquote>
       <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DSAJ_StD_zY/" data-instgrm-version="14"></blockquote>
@@ -74,7 +148,7 @@
 
     <!-- POSTERS -->
     <h3 class="text-xl font-semibold mb-6">Posters</h3>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
       <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DO5k3msDHR6/" data-instgrm-version="14"></blockquote>
       <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DLmKryPySMa/" data-instgrm-version="14"></blockquote>
       <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DMX26ieyz93/" data-instgrm-version="14"></blockquote>
@@ -85,12 +159,14 @@
 </section>
 
 <!-- CONTACT -->
-<section class="px-6 py-20 text-center">
-  <h2 class="text-3xl md:text-4xl font-extrabold">Let’s work together</h2>
-  <p class="mt-3 text-[var(--muted)]">wolfhandlerofficial@gmail.com</p>
+<section id="contact" class="px-6 py-28">
+  <div class="max-w-4xl mx-auto text-center glass rounded-3xl p-12">
+    <h2 class="text-3xl md:text-4xl font-black">Ready to hunt attention?</h2>
+    <p class="mt-4 text-[var(--muted)]">wolfhandlerofficial@gmail.com</p>
+  </div>
 </section>
 
-<footer class="py-10 text-center text-[var(--muted)]">
+<footer class="py-10 text-center text-[var(--muted)] text-sm">
   © <span id="year"></span> Wolf Handler
 </footer>
 
@@ -98,10 +174,10 @@
   document.getElementById('year').textContent = new Date().getFullYear();
 </script>
 
-<!-- INSTAGRAM EMBED (REQUIRED) -->
+<!-- Instagram Embed -->
 <script async src="https://www.instagram.com/embed.js"></script>
 <script>
-  window.addEventListener('load', function () {
+  window.addEventListener('load', function(){
     if (window.instgrm && window.instgrm.Embeds) {
       window.instgrm.Embeds.process();
     }
