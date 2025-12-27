@@ -3,165 +3,111 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Wolf Handler — Cosmic Social Command</title>
-  <meta name="description" content="Wolf Handler — cinematic reels, posters, and campaigns with cosmic dominance." />
-  <meta name="theme-color" content="#06070c" />
+  <title>Wolf Handler — Built to Dominate Feeds</title>
+  <meta name="description" content="Wolf Handler — elite social media execution. Built to dominate feeds." />
+  <meta name="theme-color" content="#050508" />
 
   <!-- Fonts & Tailwind -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
 
   <style>
     :root{
-      --bg:#06070c;
-      --panel:#0d0f1a;
-      --text:#eef1ff;
-      --muted:#9aa3c7;
-      --violet:#8b5cf6;
+      --bg:#050508;
+      --panel:#0b0b12;
+      --text:#f2f4ff;
+      --muted:#8b90b2;
       --cyan:#22d3ee;
     }
 
     html,body{height:100%; scroll-behavior:smooth}
     body{
+      margin:0;
       font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
       color:var(--text);
-      background:
-        radial-gradient(1200px 600px at 80% -10%, rgba(34,211,238,.12), transparent 60%),
-        radial-gradient(900px 500px at -10% 10%, rgba(139,92,246,.14), transparent 60%),
-        linear-gradient(180deg, #06070c 0%, #080a14 60%, #05060b 100%);
+      background:var(--bg);
       overflow-x:hidden;
     }
 
-    /* Starfield */
-    .stars:before, .stars:after{
+    /* Subtle grain */
+    body:before{
       content:"";
-      position:absolute;
+      position:fixed;
       inset:0;
-      background-repeat:repeat;
-      background-image:
-        radial-gradient(1px 1px at 20% 30%, #fff, transparent 40%),
-        radial-gradient(1px 1px at 70% 80%, #fff, transparent 40%),
-        radial-gradient(1px 1px at 40% 60%, #fff, transparent 40%),
-        radial-gradient(1px 1px at 90% 10%, #fff, transparent 40%);
-      opacity:.25;
+      background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="4"/></filter><rect width="100%" height="100%" filter="url(%23n)" opacity=".03"/></svg>');
       pointer-events:none;
-    }
-    .stars:after{opacity:.15; transform:scale(1.2)}
-
-    .glass{
-      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
-      border:1px solid rgba(255,255,255,.12);
-      box-shadow:0 20px 60px rgba(0,0,0,.45);
-      backdrop-filter: blur(10px);
+      z-index:0;
     }
 
-    /* Scroll animations */
-    .reveal{
-      opacity:0;
-      transform:translateY(60px) scale(.9);
-      transition:all .9s cubic-bezier(.2,.7,.2,1);
-    }
-    .reveal.show{
-      opacity:1;
-      transform:translateY(0) scale(1);
-    }
+    /* Reveal */
+    .reveal{opacity:0; transform:translateY(60px); transition:all 1s cubic-bezier(.2,.8,.2,1)}
+    .reveal.show{opacity:1; transform:translateY(0)}
 
-    /* Focus grow effect */
-    .focus-card{
-      transition:transform .5s ease, box-shadow .5s ease;
-    }
-    .focus-card:hover,
-    .focus-card.active{
-      transform:scale(1.06);
-      box-shadow:0 0 80px rgba(139,92,246,.35);
-      z-index:5;
-    }
+    /* Spotlight scaling */
+    .spotlight{transition:transform .6s ease, opacity .6s ease}
+    .spotlight.active{transform:scale(1.06); opacity:1}
+    .spotlight.dim{opacity:.45}
 
-    section{scroll-margin-top:110px}
+    section{scroll-margin-top:120px}
   </style>
 </head>
 <body>
 
-<div class="fixed inset-0 stars -z-10"></div>
-
 <!-- HEADER -->
-<header class="fixed top-0 left-0 w-full z-50 bg-black/40 backdrop-blur">
+<header class="fixed top-0 left-0 w-full z-50 bg-black/70 backdrop-blur">
   <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
     <div class="flex items-center gap-3">
-      <img src="logo.png" alt="Wolf Handler Logo" class="w-10 h-10" />
+      <img src="logo.png" class="w-9 h-9" alt="Wolf Handler" />
       <span class="font-black tracking-wide">WOLF HANDLER</span>
-    </div>
-    <div class="hidden md:flex gap-8 text-sm">
-      <a href="#videos" class="hover:text-[var(--cyan)]">Videos</a>
-      <a href="#posters" class="hover:text-[var(--cyan)]">Posters</a>
-      <a href="#contact" class="hover:text-[var(--cyan)]">Contact</a>
     </div>
   </div>
 </header>
 
 <!-- HERO -->
-<section class="relative pt-40 pb-32 px-6">
-  <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
-
-    <div class="reveal">
-      <h1 class="text-4xl md:text-6xl font-black leading-tight">
-        Hunt Attention.<br>
-        <span class="bg-clip-text text-transparent bg-gradient-to-r from-[var(--violet)] to-[var(--cyan)]">
-          Dominate Feeds.
-        </span>
-      </h1>
-      <p class="mt-6 text-[var(--muted)] text-lg">
-        Cinematic reels, posters and campaigns — engineered to stop the scroll.
-      </p>
-    </div>
-
-    <div class="reveal">
-      <img src="logo.png" alt="Wolf Handler" class="w-full max-w-sm mx-auto drop-shadow-[0_0_60px_rgba(139,92,246,.6)]" />
-    </div>
-
+<section class="min-h-screen flex items-center justify-center px-6 relative">
+  <div class="text-center relative z-10">
+    <img src="logo.png" alt="Wolf Handler" class="w-48 md:w-64 mx-auto mb-10 drop-shadow-[0_0_80px_rgba(34,211,238,.35)]" />
+    <h1 class="text-5xl md:text-7xl font-black tracking-tight">BUILT TO DOMINATE FEEDS</h1>
+    <p class="mt-6 text-[var(--muted)] max-w-xl mx-auto">
+      Elite social media execution for brands that refuse to be ignored.
+    </p>
   </div>
 </section>
 
-<!-- VIDEOS SECTION -->
-<section id="videos" class="px-6 md:px-10 py-28">
-  <div class="max-w-7xl mx-auto">
-    <div class="text-center mb-20 reveal">
-      <h2 class="text-4xl md:text-5xl font-black">VIDEOS</h2>
-      <p class="mt-4 text-[var(--muted)]">Motion that pulls you in.</p>
-    </div>
+<!-- VIDEOS -->
+<section id="videos" class="px-6 md:px-10 py-32">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="text-4xl md:text-5xl font-black text-center mb-24 reveal">VIDEOS</h2>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-14">
-      <div class="reveal focus-card glass p-4"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DSxRpWsCag1/" data-instgrm-version="14"></blockquote></div>
-      <div class="reveal focus-card glass p-4"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DSxRyBCjZT8/" data-instgrm-version="14"></blockquote></div>
-      <div class="reveal focus-card glass p-4"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DSAJ_StD_zY/" data-instgrm-version="14"></blockquote></div>
-      <div class="reveal focus-card glass p-4"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DJg6_biT9lC/" data-instgrm-version="14"></blockquote></div>
+    <div class="space-y-28">
+      <div class="spotlight reveal"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DSxRpWsCag1/" data-instgrm-version="14"></blockquote></div>
+      <div class="spotlight reveal"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DSxRyBCjZT8/" data-instgrm-version="14"></blockquote></div>
+      <div class="spotlight reveal"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DSAJ_StD_zY/" data-instgrm-version="14"></blockquote></div>
+      <div class="spotlight reveal"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DJg6_biT9lC/" data-instgrm-version="14"></blockquote></div>
     </div>
   </div>
 </section>
 
-<!-- POSTERS SECTION -->
-<section id="posters" class="px-6 md:px-10 py-28">
-  <div class="max-w-7xl mx-auto">
-    <div class="text-center mb-20 reveal">
-      <h2 class="text-4xl md:text-5xl font-black">POSTERS</h2>
-      <p class="mt-4 text-[var(--muted)]">Still visuals that hit hard.</p>
-    </div>
+<!-- POSTERS -->
+<section id="posters" class="px-6 md:px-10 py-32 bg-[var(--panel)]">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="text-4xl md:text-5xl font-black text-center mb-24 reveal">POSTERS</h2>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-14">
-      <div class="reveal focus-card glass p-4"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DO5k3msDHR6/" data-instgrm-version="14"></blockquote></div>
-      <div class="reveal focus-card glass p-4"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DLmKryPySMa/" data-instgrm-version="14"></blockquote></div>
-      <div class="reveal focus-card glass p-4"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DMX26ieyz93/" data-instgrm-version="14"></blockquote></div>
-      <div class="reveal focus-card glass p-4"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DMQO-ldTNec/" data-instgrm-version="14"></blockquote></div>
+    <div class="space-y-28">
+      <div class="spotlight reveal"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DO5k3msDHR6/" data-instgrm-version="14"></blockquote></div>
+      <div class="spotlight reveal"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DLmKryPySMa/" data-instgrm-version="14"></blockquote></div>
+      <div class="spotlight reveal"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DMX26ieyz93/" data-instgrm-version="14"></blockquote></div>
+      <div class="spotlight reveal"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DMQO-ldTNec/" data-instgrm-version="14"></blockquote></div>
     </div>
   </div>
 </section>
 
 <!-- CONTACT -->
-<section id="contact" class="px-6 py-28">
-  <div class="max-w-4xl mx-auto text-center glass rounded-3xl p-14 reveal">
-    <h2 class="text-3xl md:text-4xl font-black">Ready to hunt attention?</h2>
+<section id="contact" class="px-6 py-32">
+  <div class="max-w-4xl mx-auto text-center reveal">
+    <h2 class="text-3xl md:text-4xl font-black">Let’s work</h2>
     <p class="mt-4 text-[var(--muted)]">wolfhandlerofficial@gmail.com</p>
   </div>
 </section>
@@ -172,17 +118,30 @@
   document.getElementById('year').textContent = new Date().getFullYear();
 
   // Reveal on scroll
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('show'); });
-  }, { threshold: 0.15 });
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  const revealObserver = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('show'); });
+  },{threshold:.15});
+  document.querySelectorAll('.reveal').forEach(el=>revealObserver.observe(el));
+
+  // Spotlight focus
+  const spotlights = document.querySelectorAll('.spotlight');
+  const focusObserver = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        spotlights.forEach(s=>s.classList.add('dim'));
+        e.target.classList.remove('dim');
+        e.target.classList.add('active');
+      }
+    });
+  },{threshold:.6});
+  spotlights.forEach(el=>focusObserver.observe(el));
 </script>
 
 <!-- Instagram Embed -->
 <script async src="https://www.instagram.com/embed.js"></script>
 <script>
-  window.addEventListener('load', function(){
-    if (window.instgrm && window.instgrm.Embeds) {
+  window.addEventListener('load',()=>{
+    if(window.instgrm && window.instgrm.Embeds){
       window.instgrm.Embeds.process();
     }
   });
